@@ -22,4 +22,14 @@ public class VendingMachine {
         return null;
     }
 
+    public BottleOfTea getBottleOfTea(String sort, boolean sweet){
+        for (Product product : products){
+            if (product instanceof BottleOfTea){
+                if (((BottleOfTea)product).getSort() == sort && ((BottleOfTea)product).getSweet() == sweet){
+                    return (BottleOfTea)product;
+                }
+            }
+        }
+        return null;
+    }
 }
