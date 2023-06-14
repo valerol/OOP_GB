@@ -5,6 +5,7 @@ public abstract class Employee implements Comparable<Employee> {
     protected String name;
     protected String surname;
     protected double salary; // Ставка заработной платы
+    protected int age; 
 
     public String getName() {
         return name;
@@ -18,10 +19,15 @@ public abstract class Employee implements Comparable<Employee> {
         return salary;
     }
 
-    public Employee(String name, String surname, double salary) {
+    public int getAge() {
+        return age;
+    }
+
+    public Employee(String name, String surname, double salary, int age) {
         this.name = name;
         this.surname = surname;
         this.salary = salary;
+        this.age = age;
     }
 
     /**
