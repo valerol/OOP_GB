@@ -28,21 +28,35 @@ public class Program {
         Product bottleOfMilk1 = new BottleOfMilk("ООО Чистый источник", "Бутылка с молоком", 115, 1.5, 10);
         System.out.println(bottleOfMilk1.displayInfo());
 
+        Product bottleOfTea1 = new BottleOfTea("Wahaha", "Green tea", 115, 0.5, "green", true);
+        Product bottleOfTea2 = new BottleOfTea("Wahaha", "Black tea", 115, 0.5, "black", false);
+        System.out.println(bottleOfTea1.displayInfo());
+
         List<Product> products = new ArrayList<>();
         products.add(bottleOfWater1);
         products.add(bottleOfWater2);
         products.add(bottleOfMilk1);
         products.add(bottleOfWater4);
         products.add(bottleOfWater3);
+        products.add(bottleOfTea1);
+        products.add(bottleOfTea2);
 
         VendingMachine vendingMachine = new VendingMachine(products);
-        BottleOfWater bottleOfWaterResult = vendingMachine.getBottleOfWater(2);
-        if (bottleOfWaterResult != null){
+        // BottleOfWater bottleOfWaterResult = vendingMachine.getBottleOfWater(2);
+        // if (bottleOfWaterResult != null){
+        //     System.out.println("Вы купили: ");
+        //     System.out.println(bottleOfWaterResult.displayInfo());
+        // }
+        // else {
+        //     System.out.println("Такой бутылки с водой нет в автомате.");
+        // }
+        BottleOfTea bottleOfTeaResult = vendingMachine.getBottleOfTea("green", false);
+        if (bottleOfTeaResult != null){
             System.out.println("Вы купили: ");
-            System.out.println(bottleOfWaterResult.displayInfo());
+            System.out.println(bottleOfTeaResult.displayInfo());
         }
         else {
-            System.out.println("Такой бутылки с водой нет в автомате.");
+            System.out.println("Такого вида чая нет в автомате.");
         }
     }
 
