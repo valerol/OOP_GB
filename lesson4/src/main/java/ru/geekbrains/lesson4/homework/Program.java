@@ -22,8 +22,8 @@ public class Program {
      */
     public static void main(String[] args) {
 
-        Box AppleBox = new Box<Apple>();
-        Box OrangeBox = new Box<Orange>();
+        Box<Apple> AppleBox = new Box<>();
+        Box<Orange> OrangeBox = new Box<>();
 
         AppleBox.addFruit(new Apple());
         AppleBox.addFruit(new Apple());
@@ -35,15 +35,17 @@ public class Program {
         OrangeBox.addFruit(new Orange());
         OrangeBox.addFruit(new Orange());
         OrangeBox.addFruit(new Orange());
-        OrangeBox.addFruit(new Apple());
+        OrangeBox.addFruit(new Orange());
+
+        Box<Apple> AppleBox1 = new Box<>();
 
         System.out.println("Orange box weight: " + OrangeBox.getWeight());
         System.out.println("Apple box weight: " + AppleBox.getWeight());
 
         System.out.println(AppleBox.compare(OrangeBox) ? "Boxes weigh similar" : "Boxes weight differs");
-        AppleBox.pourTo(OrangeBox);
+        AppleBox.pourTo(AppleBox1);
 
-        System.out.println("Orange box weight: " + OrangeBox.getWeight());
+        System.out.println("New AppleBox box weight: " + AppleBox1.getWeight());
         System.out.println("Apple box weight: " + AppleBox.getWeight());
     }
 

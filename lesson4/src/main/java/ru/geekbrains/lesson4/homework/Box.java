@@ -1,6 +1,5 @@
 package ru.geekbrains.lesson4.homework;
 
-import java.nio.channels.WritePendingException;
 import java.util.ArrayList;
 
 public class Box <T extends Fruit>{
@@ -19,7 +18,7 @@ public class Box <T extends Fruit>{
         return this.getWeight().equals(box.getWeight());
     }
 
-    public void pourTo(Box box) {
+    public void pourTo(Box<T> box) {
         for(T fruit : fruits) {
             box.addFruit(fruit);
         }
