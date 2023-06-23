@@ -33,6 +33,22 @@ public class BookingPresenter implements ViewObserver {
         bookingView.printReservationTableError(errorMessage);
     }
 
+    public void printRemoveReservationTableResult(int oldReservationId){
+        bookingView.printRemoveReservationTableResult(oldReservationId);
+    }
+
+    public void printRemoveReservationTableError(String errorMessage){
+        bookingView.printRemoveReservationTableError(errorMessage);
+    }
+
+    public void printChangeReservationTableResult(int oldReservationId, int newReservationId){
+        bookingView.printChangeReservationTableResult(oldReservationId, newReservationId);
+    }
+
+    public void printChangeReservationTableError(String errorMessage){
+        bookingView.printChangeReservationTableError(errorMessage);
+    }
+
     @Override
     public void onReservationTable(Date orderDate, int tableNo, String name) {
         try
@@ -43,6 +59,31 @@ public class BookingPresenter implements ViewObserver {
         catch (RuntimeException e){
             printReservationTableError(e.getMessage());
         }
-
     }
+
+    @Override
+    public void onRemoveReservationTable(int oldReservation, int tableNo) {
+        try
+        {
+            tableModel.removeReservationTable(oldReservation, tableNo);
+            printRemoveReservationTableResult(oldReservation);
+        }
+        catch (RuntimeException e){
+            printRemoveReservationTableError(e.getMessage());
+        }
+    }
+
+    @Override
+    public void onChangeReservationTable(int oldReservation, Date orderDate, int tableNo, String name) {
+        try
+        {
+            int reservationId = tableModel.changeReservationTable(oldReservation, orderDate, tableNo, name);
+            printChangeReservationTableResult(oldReservation, reservationId);
+        }
+        catch (RuntimeException e){
+            printChangeReservationTableError(e.getMessage());
+        }
+    }
+
+
 }

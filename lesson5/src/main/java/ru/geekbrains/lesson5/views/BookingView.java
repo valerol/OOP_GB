@@ -30,9 +30,32 @@ public class BookingView implements View {
     }
 
     @Override
+    public void printRemoveReservationTableResult(int reservationNo) {
+        System.out.printf("Бронь #%d успешно отменена\n", reservationNo);
+    }
+
+    @Override
+    public void printRemoveReservationTableError(String errorMessage) {
+        System.out.printf("Невозможно отменить бронь. \n%s\n", errorMessage);
+    }
+
+    @Override
+    public void printChangeReservationTableResult(int oldReservationNo, int newReservationNo) {
+        System.out.printf("Бронь #%d успешно изменена на #%d\n", oldReservationNo, newReservationNo);
+    }
+
+    @Override
+    public void printChangeReservationTableError(String errorMessage) {
+        System.out.printf("Невозможно изменить бронь. \n%s\n", errorMessage);
+    }
+
+    @Override
     public void showTables(Collection<Table> tables) {
         for (Table table: tables) {
             System.out.println(table);
+            if (table.getReservations().size() > 0) {
+                System.out.println(table.getReservations());
+            };
         }
     }
 
@@ -48,8 +71,12 @@ public class BookingView implements View {
      * @param tableNo номер столика
      * @param name имя
      */
-    public void changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name){
 
+    public void removeReservationTable(int oldReservation, int tableNo){
+        observer.onRemoveReservationTable(oldReservation, tableNo);
     }
 
+    public void changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name){
+        observer.onChangeReservationTable(oldReservation, reservationDate, tableNo, name);
+    }
 }

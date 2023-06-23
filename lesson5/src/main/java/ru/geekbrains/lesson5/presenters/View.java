@@ -22,4 +22,12 @@ public interface View {
 
     void printReservationTableError(String errorMessage);
 
+    void printRemoveReservationTableResult(int oldReservationNo);
+
+    void printRemoveReservationTableError(String errorMessage);
+
+    void printChangeReservationTableResult(int oldReservationNo, int newReservationNo);
+
+    void printChangeReservationTableError(String errorMessage);
+
 }

@@ -24,7 +24,7 @@ public class TableModel implements Model {
             tables.add(new Table());
             tables.add(new Table());
             tables.add(new Table());
-
+            tables.add(new Table());
         }
 
         return tables;
@@ -47,14 +47,26 @@ public class TableModel implements Model {
         throw new RuntimeException("Некорректный номер столика.");
     }
 
+    public boolean removeReservationTable(int oldReservation, int tableNo){
+        for (Table table: tables) {
+            if (table.getNo() == tableNo){
+                for(Reservation res: table.getReservations()) {
+                    if (res.getId() == oldReservation) {
+                        return table.getReservations().remove(res);
+                    }
+                }
+            }
+        }
+        throw new RuntimeException("Некорректный номер столика или брони");
+    }
+
     /**
      * TODO: Разработать самостоятельно в рамках домашней работы
      * Поменять бронь столика
      */
-    public int changeReservationTable(){
-        return 0;
-        //...
-        //TODO: Для создания новой брони, можно воспользоваться уже существующим методом reservationTable
+    public int changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name){
+        removeReservationTable(oldReservation, tableNo);
+        return reservationTable(reservationDate, tableNo, name);
     }
 
 }
