@@ -26,7 +26,14 @@ public class Program {
 
         bookingView.reservationTable(new Date(), 102, "Станислав");
 
-        //bookingView.changeReservationTable();
+        bookingView.reservationTable(new Date(), 106, "Лера");
+
+        bookingPresenter.showTables();
+
+        //bookingView.removeReservationTable(9002, 106);
+        bookingView.changeReservationTable(9002, new Date(), 106, "Лера");
+
+        bookingPresenter.showTables();
     }
 
 }
