@@ -1,70 +1,81 @@
 package ru.geekbrains.lesson6.srp2;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Order {
 
-    private Scanner scanner = new Scanner(System.in);
-    private String clientName;
-    private String product;
-    private int qnt;
-    private int price;
+    private ArrayList<Field> fields = new ArrayList<Field>(Arrays.asList(        
+        new Field("clientName", "Имя клиента", "String"),
+        new Field("product", "Продукт", "String"),
+        new Field("qnt", "Кол-во", "Int"),
+        new Field("price", "Цена", "Float") 
+    ));
 
-    public String getClientName() {
-        return clientName;
+    {
+        for (Field field : fields) {
+            switch (field.getName()) {
+                case "clientName":
+                {
+                    field.setValue("John Doe");
+                }
+                break;
+                case "product":
+                {
+                    field.setValue("Test product");
+                }
+                break;
+                case "qnt":
+                {
+                    field.setValue("1");
+                }
+                break;
+                case "price":
+                {
+                    field.setValue("0.01");
+                }
+                break;
+            }
+        }
     }
 
-    public String getProduct() {
-        return product;
-    }
-
-    public int getQnt() {
-        return qnt;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public Order(){
+    public Order() {
 
     }
 
     public Order(String clientName, String product, int qnt, int price) {
-        this.clientName = clientName;
-        this.product = product;
-        this.qnt = qnt;
-        this.price = price;
-    }
-
-    public void inputFromConsole(){
-        clientName = prompt("Имя клиента: ");
-        product = prompt("Продукт: ");
-        qnt = Integer.parseInt(prompt("Кол-во: "));
-        price = Integer.parseInt(prompt("Цена: "));
-    }
-
-    private String prompt(String message){
-        System.out.println(message);
-        return scanner.nextLine();
-    }
-
-    public void saveToJson() {
-        String fileName = "order.json";
-        try (FileWriter writer = new FileWriter(fileName, false)) {
-            writer.write("{\n");
-            writer.write("\"clientName\":\""+ clientName + "\",\n");
-            writer.write("\"product\":\""+product+"\",\n");
-            writer.write("\"qnt\":"+qnt+",\n");
-            writer.write("\"price\":"+price+"\n");
-            writer.write("}\n");
-            writer.flush();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+        for (Field field : fields) {
+            switch (field.getName()) {
+                case "clientName":
+                {
+                    field.setValue(clientName);
+                }
+                case "product":
+                {
+                    field.setValue(product);
+                }
+                case "qnt":
+                {
+                    field.setValue(qnt);
+                }
+                case "price":
+                {
+                    field.setValue(price);
+                }
+            }
         }
     }
 
+    public ArrayList<Field> getFields() {
+        return fields;
+    }
 
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder("Ваш заказ:\n");
+        for (Field field : fields) {
+            res.append(String.format("%s: %s\n", field.getTitle(), field.getValue()));
+        }
+        return res.toString();
+    }
 }
