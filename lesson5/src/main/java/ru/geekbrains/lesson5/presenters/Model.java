@@ -15,4 +15,8 @@ public interface Model {
      * @param name Имя клиента
      */
     int reservationTable(Date reservationDate, int tableNo, String name);
+
+    boolean removeReservationTable(int oldReservation, int tableNo);
+
+    int changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name);
 }
