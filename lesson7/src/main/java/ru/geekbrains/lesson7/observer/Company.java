@@ -17,9 +17,10 @@ public class Company {
         this.jobAgency = jobAgency;
     }
 
-    public void needEmployee(){
+    public void needEmployee(String position, Type type){
         double salary = random.nextDouble(3000, maxSalary);
-        jobAgency.sendOffer(companyName, salary);
+        Vacancy vacancy = new Vacancy(position, salary, type);
+        jobAgency.sendOffer(companyName, vacancy);
     }
 
 

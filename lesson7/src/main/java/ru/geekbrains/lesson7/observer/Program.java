@@ -19,15 +19,17 @@ public class Program {
         Master ivanov = new Master("Ivanov");
         Master petrov = new Master("Petrov");
         Student sidorov = new Student("Sidorov");
+        Director kozlov = new Director("Kozlov");
 
         jobAgency.registerObserver(ivanov);
         jobAgency.registerObserver(petrov);
         jobAgency.registerObserver(sidorov);
+        jobAgency.registerObserver(kozlov);
 
         for (int i = 0; i < 5; i++){
-            geekBrains.needEmployee();
-            google.needEmployee();
-            yandex.needEmployee();
+            geekBrains.needEmployee("Director", Type.EXPERT);
+            google.needEmployee("Developer", Type.PROFESSIONAL);
+            yandex.needEmployee("Cleaner", Type.UNSKILLED);
         }
     }
 
