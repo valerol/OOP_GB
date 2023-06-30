@@ -20,7 +20,7 @@ public interface Publisher {
      * @param companyName
      * @param salary
      */
-    void sendOffer(String companyName, double salary);
+    void sendOffer(String companyName, Vacancy vacancy);
 
 
 }
